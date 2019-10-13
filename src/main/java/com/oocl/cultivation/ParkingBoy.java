@@ -16,6 +16,18 @@ public class ParkingBoy {
         this.parkingLot = parkingLot;
     }
 
+    public ParkingLot getParkingLot() {
+        return parkingLot;
+    }
+
+    public void setLastErrorMessage(String lastErrorMessage) {
+        this.lastErrorMessage = lastErrorMessage;
+    }
+
+    public List<ParkingLot> getParkingLotList() {
+        return parkingLotList;
+    }
+
     public ParkingTicket park(Car car) {
         ParkingTicket ticket;
         ParkingLot fetchedParkingLot = parkingLotList.stream()

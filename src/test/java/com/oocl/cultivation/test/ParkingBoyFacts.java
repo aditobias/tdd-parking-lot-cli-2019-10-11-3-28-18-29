@@ -1,11 +1,11 @@
 package com.oocl.cultivation.test;
 
-import com.oocl.cultivation.Car;
-import com.oocl.cultivation.ParkingBoy;
-import com.oocl.cultivation.ParkingLot;
-import com.oocl.cultivation.ParkingTicket;
+import com.oocl.cultivation.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -215,9 +215,37 @@ class ParkingBoyFacts {
             finalParkingTicket = parkingBoy.park(finalCar);
         }
 
-
         //Then
         assertNotNull(finalParkingTicket);
+    }
+
+    @Test
+    @DisplayName("STORY 4 AC1: should be able to park into more spacious parkingLot")
+    void should_be_able_to_park_into_more_spacious_parkingLot_by_smart_parking_boy() {
+        //Given
+        ParkingLot firstParkingLot = new ParkingLot();
+        ParkingLot secondParkingLot = new ParkingLot();
+        ParkingBoy smartParkingBoy = new SmartParkingBoy();
+        ParkingTicket firstParkingTicket;
+        ParkingTicket secondParkingTicket;
+
+        smartParkingBoy.setParkingLot(firstParkingLot);
+        smartParkingBoy.setParkingLot(secondParkingLot);
+
+        //When
+        Car firstCar = new Car();
+        Car secondCar = new Car();
+
+        firstParkingTicket = smartParkingBoy.park(firstCar);
+        secondParkingTicket = smartParkingBoy.park(secondCar);
+        List<ParkingLot> parkingLotList = smartParkingBoy.getParkingLotList();
+
+        //Then
+        assertNotNull(firstParkingTicket);
+        assertNotNull(secondParkingTicket);
+        assertEquals(parkingLotList.get(0).getAvailableParkingPosition(), -9);
+        assertEquals(parkingLotList.get(1).getAvailableParkingPosition(), -9);
+
     }
 
 }

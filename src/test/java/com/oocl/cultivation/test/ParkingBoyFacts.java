@@ -16,8 +16,9 @@ class ParkingBoyFacts {
     void should_return_a_parking_ticket_when_parking_boy_given_a_car_into_parking_lot() {
         //Given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
         Car car = new Car();
+        parkingBoy.setParkingLot(parkingLot);
 
         //When
         ParkingTicket parkingTicket = parkingBoy.park(car);
@@ -31,8 +32,9 @@ class ParkingBoyFacts {
     void should_return_car_when_parking_boy_is_given_ticket_to_fetch_car() {
         //Given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
         Car car = new Car();
+        parkingBoy.setParkingLot(parkingLot);
 
         ParkingTicket parkingTicket = parkingBoy.park(car);
 
@@ -48,7 +50,8 @@ class ParkingBoyFacts {
     void should_return_correct_car_by_parking_boy_using_given_ticket() {
         //Given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.setParkingLot(parkingLot);
 
         Car car = new Car();
         ParkingTicket parkingTicket = parkingBoy.park(car);
@@ -70,9 +73,10 @@ class ParkingBoyFacts {
     void should_not_fetch_car_if_wrong_parking_ticket_is_given() {
         //Given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
         ParkingTicket wrongParkingTicket = new ParkingTicket();
         Car car;
+        parkingBoy.setParkingLot(parkingLot);
 
         //When
         car = parkingBoy.fetch(wrongParkingTicket);
@@ -86,8 +90,9 @@ class ParkingBoyFacts {
     void should_not_fetch_car_if_no_ticket_is_given() {
         //Given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
         Car car;
+        parkingBoy.setParkingLot(parkingLot);
 
         //When
         car = parkingBoy.fetch(null);
@@ -101,7 +106,8 @@ class ParkingBoyFacts {
     void should_not_fetch_car_if_ticket_is_already_been_used() {
         //Given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.setParkingLot(parkingLot);
 
         Car car = new Car();
         ParkingTicket parkingTicket = parkingBoy.park(car);
@@ -119,12 +125,13 @@ class ParkingBoyFacts {
     void should_not_park_ticket_if_parking_lot_is_already_full() {
         //Given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
         ParkingTicket finalParkingTicket = new ParkingTicket();
+        parkingBoy.setParkingLot(parkingLot);
 
         //When
         Car finalCar = new Car();
-        for(int i = 0; i <= 10; i++){
+        for(int i = 0; i <= 21; i++){
             finalParkingTicket = parkingBoy.park(finalCar);
         }
 
@@ -137,8 +144,10 @@ class ParkingBoyFacts {
     void should_return_unrecognized_parking_ticket_message_if_wrong_ticket_is_given() {
         //Given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
         Car car;
+        parkingBoy.setParkingLot(parkingLot);
+
 
         //When
         car = parkingBoy.fetch(new ParkingTicket());
@@ -154,8 +163,10 @@ class ParkingBoyFacts {
     void should_return_please_provide_your_parking_ticket_message_if_ticket_is_not_given() {
         //Given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
         Car car;
+        parkingBoy.setParkingLot(parkingLot);
+
 
         //When
         car = parkingBoy.fetch(null);
@@ -170,8 +181,10 @@ class ParkingBoyFacts {
     void should_return_not_enough_position_when_capacity_is_full_in_parking_lot() {
         //Given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
         ParkingTicket finalParkingTicket = new ParkingTicket();
+        parkingBoy.setParkingLot(parkingLot);
+
 
         //When
         Car finalCar = new Car();
@@ -184,5 +197,27 @@ class ParkingBoyFacts {
         assertEquals(parkingBoy.getLastErrorMessage(), "Not enough position.");
     }
 
+    @Test
+    @DisplayName("STORY 3 AC1: should return parking ticket from second parking lot when first parking lot is full")
+    void should_return_parking_ticket_from_second_parking_lot_when_first_parking_lot_is_full() {
+        //Given
+        ParkingLot firstParkingLot = new ParkingLot();
+        ParkingLot secondParkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingTicket finalParkingTicket = new ParkingTicket();
+        parkingBoy.setParkingLot(firstParkingLot);
+        parkingBoy.setParkingLot(secondParkingLot);
+
+        //When
+        Car finalCar = new Car();
+
+        for(int i = 0; i <= 10; i++){
+            finalParkingTicket = parkingBoy.park(finalCar);
+        }
+
+
+        //Then
+        assertNotNull(finalParkingTicket);
+    }
 
 }

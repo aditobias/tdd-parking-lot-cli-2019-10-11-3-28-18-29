@@ -1,9 +1,9 @@
 package com.oocl.cultivation;
 
+import java.math.BigDecimal;
 import java.util.List;
 
-public class SmartParkingBoy extends ParkingBoy{
-
+public class SuperSmartParkingBoy extends ParkingBoy{
 
     @Override
     public ParkingTicket park(Car car) {
@@ -11,7 +11,7 @@ public class SmartParkingBoy extends ParkingBoy{
 
         ParkingTicket ticket;
         ParkingLot fetchedParkingLot = parkingLotList.stream()
-                .reduce(this::getMoreSpaciousParkingLot)
+                .reduce(this::getLargerPositionRate)
                 .orElse(null);
 
         if(fetchedParkingLot != null){
@@ -27,12 +27,14 @@ public class SmartParkingBoy extends ParkingBoy{
         }
 
         return ticket;
+
     }
 
-    private ParkingLot getMoreSpaciousParkingLot(ParkingLot parkLotOne, ParkingLot parkLotTwo) {
-        return Math.abs(parkLotTwo.getAvailableParkingPosition()) > Math.abs(parkLotOne.getAvailableParkingPosition())
-                ? parkLotTwo : parkLotOne;
+    private ParkingLot getLargerPositionRate(ParkingLot parkLotOne, ParkingLot parkLotTwo) {
+        return calculatePositionRate(parkLotTwo) > calculatePositionRate(parkLotOne) ? parkLotTwo : parkLotOne;
     }
 
-
+    private Double calculatePositionRate(ParkingLot parkingLot){
+        return Double.valueOf(Math.abs(parkingLot.getAvailableParkingPosition())) / parkingLot.getCapacity();
+    }
 }

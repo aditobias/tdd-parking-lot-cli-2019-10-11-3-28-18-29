@@ -248,4 +248,40 @@ class ParkingBoyFacts {
 
     }
 
+    @Test
+    @DisplayName("STORY 5 AC1: should be able to park into more spacious parkingLot")
+    void should_be_able_to_park_where_parking_lot_has_more_position_rate() {
+        //Given
+        ParkingLot firstParkingLot = new ParkingLot();
+        ParkingLot secondParkingLot = new ParkingLot();
+        ParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingTicket firstParkingTicket;
+        ParkingTicket secondParkingTicket;
+        ParkingTicket thirdParkingTicket;
+
+        superSmartParkingBoy.setParkingLot(firstParkingLot);
+        superSmartParkingBoy.setParkingLot(secondParkingLot);
+        parkingBoy.setParkingLot(firstParkingLot);
+        parkingBoy.setParkingLot(secondParkingLot);
+
+        //When
+        Car firstCar = new Car();
+        Car secondCar = new Car();
+        Car thirdCar = new Car();
+
+        firstParkingTicket = parkingBoy.park(firstCar);
+        secondParkingTicket = parkingBoy.park(secondCar);
+        thirdParkingTicket = superSmartParkingBoy.park(thirdCar);
+        List<ParkingLot> parkingLotList = superSmartParkingBoy.getParkingLotList();
+
+        //Then
+        assertNotNull(firstParkingTicket);
+        assertNotNull(secondParkingTicket);
+        assertNotNull(thirdParkingTicket);
+        assertEquals(parkingLotList.get(0).getAvailableParkingPosition(), -8);
+        assertEquals(parkingLotList.get(1).getAvailableParkingPosition(), -9);
+
+    }
+
 }

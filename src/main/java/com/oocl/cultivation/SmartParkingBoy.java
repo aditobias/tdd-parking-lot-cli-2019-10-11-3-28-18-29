@@ -5,6 +5,7 @@ import java.util.List;
 public class SmartParkingBoy extends ParkingBoy{
 
 
+
     @Override
     public ParkingTicket park(Car car) {
         List<ParkingLot> parkingLotList = getParkingLotList();
@@ -17,16 +18,10 @@ public class SmartParkingBoy extends ParkingBoy{
         if(fetchedParkingLot != null){
             ticket = fetchedParkingLot.park(car);
             return ticket;
-        }else{
-            ticket = null;
         }
 
-        if(ticket == null){
-            setLastErrorMessage("Not enough position.");
-            return null;
-        }
-
-        return ticket;
+        setLastErrorMessage(NOT_ENOUGH_POSITION);
+        return null;
     }
 
     private ParkingLot getMoreSpaciousParkingLot(ParkingLot parkLotOne, ParkingLot parkLotTwo) {

@@ -4,7 +4,6 @@ import com.oocl.cultivation.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,7 +17,7 @@ class ParkingBoyFacts {
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy();
         Car car = new Car();
-        parkingBoy.setParkingLot(parkingLot);
+        parkingBoy.addParkingLot(parkingLot);
 
         //When
         ParkingTicket parkingTicket = parkingBoy.park(car);
@@ -34,7 +33,7 @@ class ParkingBoyFacts {
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy();
         Car car = new Car();
-        parkingBoy.setParkingLot(parkingLot);
+        parkingBoy.addParkingLot(parkingLot);
 
         ParkingTicket parkingTicket = parkingBoy.park(car);
 
@@ -51,7 +50,7 @@ class ParkingBoyFacts {
         //Given
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy();
-        parkingBoy.setParkingLot(parkingLot);
+        parkingBoy.addParkingLot(parkingLot);
 
         Car car = new Car();
         ParkingTicket parkingTicket = parkingBoy.park(car);
@@ -76,7 +75,7 @@ class ParkingBoyFacts {
         ParkingBoy parkingBoy = new ParkingBoy();
         ParkingTicket wrongParkingTicket = new ParkingTicket();
         Car car;
-        parkingBoy.setParkingLot(parkingLot);
+        parkingBoy.addParkingLot(parkingLot);
 
         //When
         car = parkingBoy.fetch(wrongParkingTicket);
@@ -92,7 +91,7 @@ class ParkingBoyFacts {
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy();
         Car car;
-        parkingBoy.setParkingLot(parkingLot);
+        parkingBoy.addParkingLot(parkingLot);
 
         //When
         car = parkingBoy.fetch(null);
@@ -107,7 +106,7 @@ class ParkingBoyFacts {
         //Given
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy();
-        parkingBoy.setParkingLot(parkingLot);
+        parkingBoy.addParkingLot(parkingLot);
 
         Car car = new Car();
         ParkingTicket parkingTicket = parkingBoy.park(car);
@@ -127,7 +126,7 @@ class ParkingBoyFacts {
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy();
         ParkingTicket finalParkingTicket = new ParkingTicket();
-        parkingBoy.setParkingLot(parkingLot);
+        parkingBoy.addParkingLot(parkingLot);
 
         //When
         Car finalCar = new Car();
@@ -146,7 +145,7 @@ class ParkingBoyFacts {
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy();
         Car car;
-        parkingBoy.setParkingLot(parkingLot);
+        parkingBoy.addParkingLot(parkingLot);
 
 
         //When
@@ -165,7 +164,7 @@ class ParkingBoyFacts {
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy();
         Car car;
-        parkingBoy.setParkingLot(parkingLot);
+        parkingBoy.addParkingLot(parkingLot);
 
 
         //When
@@ -183,7 +182,7 @@ class ParkingBoyFacts {
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy();
         ParkingTicket finalParkingTicket = new ParkingTicket();
-        parkingBoy.setParkingLot(parkingLot);
+        parkingBoy.addParkingLot(parkingLot);
 
 
         //When
@@ -205,8 +204,8 @@ class ParkingBoyFacts {
         ParkingLot secondParkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy();
         ParkingTicket finalParkingTicket = new ParkingTicket();
-        parkingBoy.setParkingLot(firstParkingLot);
-        parkingBoy.setParkingLot(secondParkingLot);
+        parkingBoy.addParkingLot(firstParkingLot);
+        parkingBoy.addParkingLot(secondParkingLot);
 
         //When
         Car finalCar = new Car();
@@ -229,8 +228,8 @@ class ParkingBoyFacts {
         ParkingTicket firstParkingTicket;
         ParkingTicket secondParkingTicket;
 
-        smartParkingBoy.setParkingLot(firstParkingLot);
-        smartParkingBoy.setParkingLot(secondParkingLot);
+        smartParkingBoy.addParkingLot(firstParkingLot);
+        smartParkingBoy.addParkingLot(secondParkingLot);
 
         //When
         Car firstCar = new Car();
@@ -260,10 +259,10 @@ class ParkingBoyFacts {
         ParkingTicket secondParkingTicket;
         ParkingTicket thirdParkingTicket;
 
-        superSmartParkingBoy.setParkingLot(firstParkingLot);
-        superSmartParkingBoy.setParkingLot(secondParkingLot);
-        parkingBoy.setParkingLot(firstParkingLot);
-        parkingBoy.setParkingLot(secondParkingLot);
+        superSmartParkingBoy.addParkingLot(firstParkingLot);
+        superSmartParkingBoy.addParkingLot(secondParkingLot);
+        parkingBoy.addParkingLot(firstParkingLot);
+        parkingBoy.addParkingLot(secondParkingLot);
 
         //When
         Car firstCar = new Car();

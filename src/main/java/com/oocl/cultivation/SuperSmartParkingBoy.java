@@ -3,7 +3,10 @@ package com.oocl.cultivation;
 import java.math.BigDecimal;
 import java.util.List;
 
+import static com.oocl.cultivation.SmartParkingBoy.NOT_ENOUGH_POSITION;
+
 public class SuperSmartParkingBoy extends ParkingBoy{
+
 
     @Override
     public ParkingTicket park(Car car) {
@@ -17,16 +20,10 @@ public class SuperSmartParkingBoy extends ParkingBoy{
         if(fetchedParkingLot != null){
             ticket = fetchedParkingLot.park(car);
             return ticket;
-        }else{
-            ticket = null;
         }
 
-        if(ticket == null){
-            setLastErrorMessage("Not enough position.");
-            return null;
-        }
-
-        return ticket;
+        setLastErrorMessage(NOT_ENOUGH_POSITION);
+        return null;
 
     }
 
